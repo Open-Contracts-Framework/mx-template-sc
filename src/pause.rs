@@ -1,7 +1,7 @@
 use errors::{ERROR_NOT_PAUSED, ERROR_PAUSED};
 use multiversx_sc::imports::*;
 
-/// Standard smart contract module that offers pausability.
+/// Smart Contract module that offers pausability.
 ///
 /// It provides:
 /// * two endpoints where an admin can pause/unpause the contract

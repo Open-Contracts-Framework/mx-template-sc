@@ -1,7 +1,7 @@
 use errors::ERROR_NOT_ADMIN;
 use multiversx_sc::imports::*;
 
-/// Standard smart contract module that offers admin management capabilities.
+/// Smart Contract module that offers admin management capabilities.
 ///
 /// It provides:
 /// * two endpoints where the owner can add/remove admins

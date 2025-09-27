@@ -22,3 +22,6 @@ path = "common/errors"
 
 [dependencies.structs]
 path = "common/structs"
+
+[dependencies.constants]
+path = "common/constants"

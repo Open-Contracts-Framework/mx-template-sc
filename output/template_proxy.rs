@@ -128,4 +128,31 @@ where
             .raw_call("getAdmins")
             .original_result()
     }
+
+    pub fn pause(
+        self,
+    ) -> TxTypedCall<Env, From, To, NotPayable, Gas, ()> {
+        self.wrapped_tx
+            .payment(NotPayable)
+            .raw_call("pause")
+            .original_result()
+    }
+
+    pub fn unpause(
+        self,
+    ) -> TxTypedCall<Env, From, To, NotPayable, Gas, ()> {
+        self.wrapped_tx
+            .payment(NotPayable)
+            .raw_call("unpause")
+            .original_result()
+    }
+
+    pub fn is_paused(
+        self,
+    ) -> TxTypedCall<Env, From, To, NotPayable, Gas, bool> {
+        self.wrapped_tx
+            .payment(NotPayable)
+            .raw_call("getIsPaused")
+            .original_result()
+    }
 }

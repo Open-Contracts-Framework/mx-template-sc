@@ -6,7 +6,7 @@ mod admin;
 mod pause;
 
 #[multiversx_sc::contract]
-pub trait Template: admin::AdminModule {
+pub trait Template: admin::AdminModule + pause::PauseModule {
     #[init]
     fn init(&self) {}
 

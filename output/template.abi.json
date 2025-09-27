@@ -77,6 +77,28 @@
                     "multi_result": true
                 }
             ]
+        },
+        {
+            "name": "pause",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "unpause",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "getIsPaused",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "bool"
+                }
+            ]
         }
     ],
     "events": [
@@ -99,6 +121,14 @@
                     "indexed": true
                 }
             ]
+        },
+        {
+            "identifier": "paused",
+            "inputs": []
+        },
+        {
+            "identifier": "unpaused",
+            "inputs": []
         }
     ],
     "esdtAttributes": [],
