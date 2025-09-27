@@ -41,7 +41,7 @@ fi
 if command -v abi-markdowner &> /dev/null; then
     echo
     echo -e "${GREEN}📚 Generating documentation with abi-markdowner...${NC}"
-    if ! abi-markdowner --output-file README.md; then
+    if ! abi-markdowner; then
         echo -e "${RED}❌ abi-markdowner failed${NC}"
         exit 1
     fi

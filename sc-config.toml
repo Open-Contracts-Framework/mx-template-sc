@@ -1,4 +1,0 @@
-[settings]
-
-[[proxy]]
-path = "output/proxy.rs"
