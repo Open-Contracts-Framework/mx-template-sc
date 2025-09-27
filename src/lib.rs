@@ -2,11 +2,11 @@
 
 use multiversx_sc::imports::*;
 
-mod admin;
+mod admins;
 mod pause;
 
 #[multiversx_sc::contract]
-pub trait Template: admin::AdminModule + pause::PauseModule {
+pub trait Template: admins::AdminsModule + pause::PauseModule {
     #[init]
     fn init(&self) {}
 

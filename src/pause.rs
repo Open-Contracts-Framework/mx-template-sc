@@ -8,7 +8,7 @@ use multiversx_sc::imports::*;
 /// * a view to check if the contract is paused
 /// * two methods to require the contract to be paused/not paused
 #[multiversx_sc::module]
-pub trait PauseModule: crate::admin::AdminModule {
+pub trait PauseModule: crate::admins::AdminsModule {
     // === Endpoints ===
 
     #[endpoint(pause)]

@@ -9,7 +9,7 @@ use multiversx_sc::imports::*;
 /// * a view to get the list of admins
 /// * a method to require an address to be an admin
 #[multiversx_sc::module]
-pub trait AdminModule {
+pub trait AdminsModule {
     // === Endpoints ===
 
     #[only_owner]
