@@ -26,7 +26,7 @@ multiversx_sc_wasm_adapter::endpoints! {
         getAdmins => admins
         pause => pause
         unpause => unpause
-        getIsPaused => is_paused
+        isPaused => is_paused
     )
 }
 
