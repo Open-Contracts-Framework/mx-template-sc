@@ -20,10 +20,10 @@ multiversx_sc_wasm_adapter::endpoints! {
     (
         init => init
         upgrade => upgrade
-        pauseS => pause_sc
-        pause => pause_endpoint
-        unpause => unpause_endpoint
-        isPaused => paused_status
+        addAdmins => add_admin
+        removeAdmins => remove_admin
+        isAdmin => is_admin
+        getAdmins => admins
     )
 }
 

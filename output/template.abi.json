@@ -9,7 +9,7 @@
         },
         "contractCrate": {
             "name": "template",
-            "version": "0.1.0"
+            "version": "0.0.1"
         },
         "framework": {
             "name": "multiversx-sc",
@@ -27,44 +27,78 @@
     },
     "endpoints": [
         {
-            "name": "pauseS",
-            "mutability": "mutable",
-            "inputs": [],
-            "outputs": []
-        },
-        {
-            "name": "pause",
+            "name": "addAdmins",
             "onlyOwner": true,
             "mutability": "mutable",
-            "inputs": [],
+            "inputs": [
+                {
+                    "name": "addresses",
+                    "type": "variadic<Address>",
+                    "multi_arg": true
+                }
+            ],
             "outputs": []
         },
         {
-            "name": "unpause",
+            "name": "removeAdmins",
             "onlyOwner": true,
             "mutability": "mutable",
-            "inputs": [],
+            "inputs": [
+                {
+                    "name": "addresses",
+                    "type": "variadic<Address>",
+                    "multi_arg": true
+                }
+            ],
             "outputs": []
         },
         {
-            "name": "isPaused",
+            "name": "isAdmin",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "bool"
+                }
+            ]
+        },
+        {
+            "name": "getAdmins",
             "mutability": "readonly",
             "inputs": [],
             "outputs": [
                 {
-                    "type": "bool"
+                    "type": "variadic<Address>",
+                    "multi_result": true
                 }
             ]
         }
     ],
     "events": [
         {
-            "identifier": "pauseContract",
-            "inputs": []
+            "identifier": "adminsAdded",
+            "inputs": [
+                {
+                    "name": "admins",
+                    "type": "variadic<Address>",
+                    "indexed": true
+                }
+            ]
         },
         {
-            "identifier": "unpauseContract",
-            "inputs": []
+            "identifier": "adminsRemoved",
+            "inputs": [
+                {
+                    "name": "admins",
+                    "type": "variadic<Address>",
+                    "indexed": true
+                }
+            ]
         }
     ],
     "esdtAttributes": [],

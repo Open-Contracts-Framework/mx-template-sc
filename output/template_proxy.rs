@@ -81,39 +81,51 @@ where
     To: TxTo<Env>,
     Gas: TxGas<Env>,
 {
-    pub fn pause_sc(
+    pub fn add_admin<
+        Arg0: ProxyArg<MultiValueEncoded<Env::Api, ManagedAddress<Env::Api>>>,
+    >(
         self,
+        addresses: Arg0,
     ) -> TxTypedCall<Env, From, To, NotPayable, Gas, ()> {
         self.wrapped_tx
             .payment(NotPayable)
-            .raw_call("pauseS")
+            .raw_call("addAdmins")
+            .argument(&addresses)
             .original_result()
     }
 
-    pub fn pause_endpoint(
+    pub fn remove_admin<
+        Arg0: ProxyArg<MultiValueEncoded<Env::Api, ManagedAddress<Env::Api>>>,
+    >(
         self,
+        addresses: Arg0,
     ) -> TxTypedCall<Env, From, To, NotPayable, Gas, ()> {
         self.wrapped_tx
             .payment(NotPayable)
-            .raw_call("pause")
+            .raw_call("removeAdmins")
+            .argument(&addresses)
             .original_result()
     }
 
-    pub fn unpause_endpoint(
+    pub fn is_admin<
+        Arg0: ProxyArg<ManagedAddress<Env::Api>>,
+    >(
         self,
-    ) -> TxTypedCall<Env, From, To, NotPayable, Gas, ()> {
-        self.wrapped_tx
-            .payment(NotPayable)
-            .raw_call("unpause")
-            .original_result()
-    }
-
-    pub fn paused_status(
-        self,
+        address: Arg0,
     ) -> TxTypedCall<Env, From, To, NotPayable, Gas, bool> {
         self.wrapped_tx
             .payment(NotPayable)
-            .raw_call("isPaused")
+            .raw_call("isAdmin")
+            .argument(&address)
+            .original_result()
+    }
+
+    pub fn admins(
+        self,
+    ) -> TxTypedCall<Env, From, To, NotPayable, Gas, MultiValueEncoded<Env::Api, ManagedAddress<Env::Api>>> {
+        self.wrapped_tx
+            .payment(NotPayable)
+            .raw_call("getAdmins")
             .original_result()
     }
 }
