@@ -22,12 +22,10 @@ hex_to_string() {
 # Function to convert hex to integer
 hex_to_int() {
     local hex="$1"
-    # Add 0x prefix if not present
-    if [[ "$hex" != 0x* ]]; then
-        hex="0x$hex"
-    fi
-    # Convert to decimal
-    echo $((hex))
+    # Remove 0x prefix if present
+    hex="${hex#0x}"
+    # Convert to decimal using printf to handle large numbers
+    python3 -c "print(int('$hex', 16))" 2>/dev/null || echo $((0x$hex))
 }
 
 # Process each command line argument
@@ -40,7 +38,10 @@ for arg in "$@"; do
             result="$encoded"
         else
             # Encode failed or empty result, fall back to standard decoding
-            if hex_to_string_result=$(hex_to_string "$arg"); then
+            # Try hex_to_int first, then hex_to_string
+            if result=$(hex_to_int "$arg" 2>/dev/null) && [ -n "$result" ]; then
+                result="$result"
+            elif hex_to_string_result=$(hex_to_string "$arg"); then
                 result="$hex_to_string_result"
             else
                 result=$(hex_to_int "$arg")
@@ -48,7 +49,10 @@ for arg in "$@"; do
         fi
     else
         # Not a 64-character string, try standard hex decoding
-        if hex_to_string_result=$(hex_to_string "$arg"); then
+        # Prioritize hex_to_int over hex_to_string
+        if result=$(hex_to_int "$arg" 2>/dev/null) && [ -n "$result" ]; then
+            result="$result"
+        elif hex_to_string_result=$(hex_to_string "$arg"); then
             result="$hex_to_string_result"
         else
             result=$(hex_to_int "$arg")
