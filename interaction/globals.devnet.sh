@@ -23,20 +23,12 @@ if [ ! -r "$PEM" ]; then
     exit 1
 fi
 
-# Validate that SC_ADDRESS is set and not empty
+# Warn if SC_ADDRESS is not set
 if [ -z "$SC_ADDRESS" ]; then
-    echo "Error: SC_ADDRESS variable is not set in .env.devnet file"
-    echo "Please deploy the smart contract first and set SC_ADDRESS in .env.devnet"
-    exit 1
+    echo "⚠️  SC_ADDRESS variable is not set."
+else
+    SC_ADDRESS_HEX=$(mxpy wallet bech32 --decode $SC_ADDRESS)
 fi
-
-# Validate that SC_ADDRESS has the correct format (MultiversX address)
-if [[ ! "$SC_ADDRESS" =~ ^erd1[a-z0-9]{58}$ ]]; then
-    echo "Error: SC_ADDRESS '$SC_ADDRESS' is not a valid MultiversX address format"
-    exit 1
-fi
-
-SC_ADDRESS_HEX=$(mxpy wallet bech32 --decode $SC_ADDRESS)
 
 OWNER_PEM=$PEM
 OWNER_ADDRESS=$(mxpy wallet convert --infile $OWNER_PEM --in-format pem --out-format address-bech32 | sed -n '3p')
@@ -49,12 +41,3 @@ if [ -z "$OWNER_ADDRESS" ]; then
 fi
 
 OWNER_ADDRESS_HEX=$(mxpy wallet bech32 --decode $OWNER_ADDRESS)
-
-EGLD="EGLD"
-EGLD_HEX=$(./encode.sh $EGLD)
-
-WEGLD="WEGLD-d7c6bb"
-WEGLD_HEX=$(./encode.sh $WEGLD)
-
-USDC="USDC-8d4068"
-USDC_HEX=$(./encode.sh $USDC)
