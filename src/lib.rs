@@ -2,8 +2,11 @@
 
 use multiversx_sc::imports::*;
 
-mod admins;
-mod pause;
+pub mod admins;
+pub mod constants;
+pub mod errors;
+pub mod pause;
+pub mod structs;
 
 #[multiversx_sc::contract]
 pub trait Template: admins::AdminsModule + pause::PauseModule {

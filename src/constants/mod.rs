@@ -1,5 +1,3 @@
-#![no_std]
-
 // use multiversx_sc::{derive_imports::*, imports::*};
 
 // pub type Admin<M> = ManagedAddress<M>;

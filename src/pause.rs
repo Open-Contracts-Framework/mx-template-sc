@@ -1,4 +1,4 @@
-use errors::{ERROR_NOT_PAUSED, ERROR_PAUSED};
+use crate::errors::{ERROR_NOT_PAUSED, ERROR_PAUSED};
 use multiversx_sc::imports::*;
 
 /// Smart Contract module that offers pausability.

@@ -1,4 +1,4 @@
-use errors::ERROR_NOT_ADMIN;
+use crate::errors::ERROR_NOT_ADMIN;
 use multiversx_sc::imports::*;
 
 /// Smart Contract module that offers admin management capabilities.
